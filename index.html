@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GBRY_N8 — AI HR & Career Automation</title>
+<style>
+  :root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --primary: #1d4ed8;
+    --primary-hover: #1e40af;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+    line-height: 1.6;
+  }
+  header {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+  }
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  h1 { margin: 0; font-size: 28px; letter-spacing: -0.5px; }
+  .subtitle { color: var(--muted); margin: 8px 0 0; font-size: 16px; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    background: #e2e8f0;
+    color: #334155;
+  }
+  .badge.on { background: #dcfce7; color: #166534; }
+  .badge.off { background: #fee2e2; color: #991b1b; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
+  }
+  .card h3 { margin: 0 0 8px; font-size: 17px; }
+  .card p { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+  .btn {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn:hover { background: var(--primary-hover); }
+  .btn.secondary { background: #0f172a; }
+  .btn.secondary:hover { background: #334155; }
+  a.disabled { pointer-events: none; opacity: 0.45; }
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .section h2 { margin-top: 0; font-size: 20px; }
+  #msgs {
+    border: 1px solid var(--border);
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 14px;
+    min-height: 180px;
+    max-height: 360px;
+    overflow-y: auto;
+    margin-bottom: 12px;
+  }
+  .me {
+    background: #dbeafe;
+    color: #1e3a8a;
+    padding: 8px 12px;
+    border-radius: 12px 12px 2px 12px;
+    margin: 8px 0 8px auto;
+    max-width: 80%;
+    width: fit-content;
+    font-size: 14px;
+  }
+  .bot {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    border-radius: 12px 12px 12px 2px;
+    margin: 8px 0;
+    max-width: 85%;
+    white-space: pre-wrap;
+    font-size: 14px;
+  }
+  #ask { display: flex; gap: 8px; }
+  #q {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  ol.steps { padding-left: 20px; margin: 0; color: var(--muted); font-size: 15px; }
+  ol.steps li { margin-bottom: 10px; }
+  ol.steps strong { color: var(--text); }
+  .downloads { display: flex; flex-wrap: wrap; gap: 10px; }
+  .dl-link {
+    font-size: 13px;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--primary);
+    background: #f8fafc;
+  }
+  .dl-link:hover { background: #eff6ff; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="top-row">
+    <h1>GBRY_N8</h1>
+    <span class="badge" id="status">Checking system status…</span>
+  </div>
+  <p class="subtitle">End-to-end AI HR &amp; Career Automation suite built on n8n — featuring automated CV screening, a RAG HR policy assistant, multi-agent career coaching, and self-healing error monitoring.</p>
+</header>
+
+<div class="grid">
+  <div class="card">
+    <h3>1. Ask HR Assistant</h3>
+    <p>Query company leave, working hours, and benefits policies using our RAG knowledge base.</p>
+    <a class="btn" href="#chat-section">Open Chat</a>
+  </div>
+  <div class="card">
+    <h3>2. Apply for a Job</h3>
+    <p>Submit your PDF CV to be automatically validated, stored, and scored by AI recruiters.</p>
+    <a class="btn" id="applyLink" target="_blank" rel="noopener">Apply Now</a>
+  </div>
+  <div class="card">
+    <h3>3. Job Application Coach</h3>
+    <p>Upload your CV and a job description to receive a tailored match report, cover letter, and interview prep.</p>
+    <a class="btn secondary" id="coachLink" target="_blank" rel="noopener">Get Coached</a>
+  </div>
+</div>
+
+<div class="section" id="chat-section">
+  <h2>Live HR Policy Assistant (RAG)</h2>
+  <div id="msgs">
+    <div class="bot">Hi! 👋 I'm Gbry, your HR assistant. Ask me anything about company policies (leave, hours, remote work, benefits).</div>
+  </div>
+  <form id="ask">
+    <input id="q" placeholder="Example: How many annual leave days do I get?" required>
+    <button class="btn" type="submit">Ask</button>
+  </form>
+</div>
+
+<div class="section">
+  <h2>How It Works (6 Connected Workflows)</h2>
+  <ol class="steps">
+    <li><strong>Recruitment 1 — Intake:</strong> Validates candidate details and PDF integrity, prevents duplicate applications, saves CVs to Google Drive, and logs entries to Google Sheets.</li>
+    <li><strong>Recruitment 2 — AI Scan:</strong> Runs hourly to extract CV text (with Gemini OCR fallback for scanned PDFs), scores candidate fit via Groq LLMs, emails interview invitations or polite rejections, and briefs HR.</li>
+    <li><strong>Recruitment 3 — Error Handler:</strong> Captures workflow failures, throttles duplicate alerts, logs incidents, sends daily digests, and runs a 2-hour heartbeat check on stuck applications.</li>
+    <li><strong>HR Policy RAG Assistant:</strong> Answers employee questions strictly from indexed HR policy documents with source citations and conversation memory.</li>
+    <li><strong>Policy Loader:</strong> Automatically syncs policy docs from Google Drive into the vector store on n8n startup and daily at 7:00 AM.</li>
+    <li><strong>Job Application Coach:</strong> Orchestrates three specialist AI agents (CV Matcher, Cover Letter Writer, Interview Coach) to email a complete career report.</li>
+  </ol>
+</div>
+
+<div class="section">
+  <h2>Download Cleaned n8n Workflows</h2>
+  <p style="color: var(--muted); font-size: 14px; margin-top: 0;">All workflow JSON files have been sanitized of personal IDs, emails, and credentials so you can import them directly into your own n8n instance:</p>
+  <div class="downloads">
+    <a class="dl-link" href="./recruitment-1-intake.json" download>recruitment-1-intake.json</a>
+    <a class="dl-link" href="./recruitment-2-ai-scan.json" download>recruitment-2-ai-scan.json</a>
+    <a class="dl-link" href="./recruitment-3-error-handler.json" download>recruitment-3-error-handler.json</a>
+    <a class="dl-link" href="./hr-policy-rag-assistant.json" download>hr-policy-rag-assistant.json</a>
+    <a class="dl-link" href="./policy-loader.json" download>policy-loader.json</a>
+    <a class="dl-link" href="./job-application-coach.json" download>job-application-coach.json</a>
+  </div>
+</div>
+
+<script>
+const CONFIG = {
+  n8nBase: "https://sixtieth-cone-thickness.ngrok-free.dev",
+  chat: "/webhook/f75d5af2-cea1-46b4-9464-996337b5e734/chat",
+  applyForm: "/form/1f78f24d-743f-4df0-894d-f5efe382158c",
+  coachForm: "/form/e6525ea1-f553-43a2-9227-e56395129b2b"
+};
+
+const $ = s => document.querySelector(s);
+const sessionId = crypto.randomUUID();
+const HEADERS = {
+  "Content-Type": "application/json",
+  "ngrok-skip-browser-warning": "1"
+};
+
+$("#applyLink").href = CONFIG.n8nBase + CONFIG.applyForm;
+$("#coachLink").href = CONFIG.n8nBase + CONFIG.coachForm;
+
+function setStatus(online) {
+  $("#status").textContent = online ? "Online — Live n8n Connected" : "Offline — Server Sleeping";
+  $("#status").className = "badge " + (online ? "on" : "off");
+  document.querySelectorAll("#applyLink, #coachLink").forEach(a => a.classList.toggle("disabled", !online));
+}
+
+async function checkStatus() {
+  try {
+    await fetch(CONFIG.n8nBase + CONFIG.chat, {
+      method: "POST",
+      headers: HEADERS,
+      body: JSON.stringify({ action: "loadPreviousSession", sessionId })
+    });
+    setStatus(true);
+  } catch (err) {
+    setStatus(false);
+  }
+}
+checkStatus();
+
+function add(cls, text) {
+  const d = document.createElement("div");
+  d.className = cls;
+  d.textContent = text;
+  const box = $("#msgs");
+  box.append(d);
+  box.scrollTop = box.scrollHeight;
+  return d;
+}
+
+$("#ask").onsubmit = async e => {
+  e.preventDefault();
+  const q = $("#q").value.trim();
+  if (!q) return;
+  $("#q").value = "";
+  add("me", q);
+  const bot = add("bot", "Thinking…");
+  try {
+    const r = await fetch(CONFIG.n8nBase + CONFIG.chat, {
+      method: "POST",
+      headers: HEADERS,
+      body: JSON.stringify({ action: "sendMessage", sessionId, chatInput: q })
+    });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const data = await r.json();
+    bot.textContent = data.output || "No response received.";
+    setStatus(true);
+  } catch (err) {
+    bot.textContent = "The HR assistant is offline right now. Please try again later.";
+    setStatus(false);
+  }
+};
+</script>
+</body>
+</html>
